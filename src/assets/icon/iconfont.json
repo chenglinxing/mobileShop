@@ -1,0 +1,65 @@
+{
+  "id": "2299535",
+  "name": "webAPP",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11316461",
+      "name": "美团",
+      "font_class": "meituan",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "12437761",
+      "name": "淘宝",
+      "font_class": "taobao",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "12782784",
+      "name": "拼多多",
+      "font_class": "pinduoduo1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "13360927",
+      "name": "天猫",
+      "font_class": "tianmao1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "14075688",
+      "name": "京东",
+      "font_class": "jingdong",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "14542362",
+      "name": "叮咚萝卜",
+      "font_class": "dingdongluobu",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "16799232",
+      "name": "饿了么",
+      "font_class": "elemo",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
+      "icon_id": "18917530",
+      "name": "苏宁",
+      "font_class": "suning",
+      "unicode": "e6a8",
+      "unicode_decimal": 59048
+    }
+  ]
+}
