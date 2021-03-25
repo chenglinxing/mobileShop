@@ -11,6 +11,38 @@
       </div>
     </tab-header>
 
+    <!--商品筛选-->
+    <div class="goods-screen">
+      <van-dropdown-menu>
+        <van-dropdown-item v-model="value" :options="options" />
+        <van-dropdown-item title="筛选" ref="item">
+          <van-cell
+            center
+            :title="item.title"
+            v-for="(item, index) in screenList"
+            :key="index"
+          >
+            <template #right-icon>
+              <van-switch
+                v-model="switchTitle[item.key]"
+                size="24"
+                active-color="#ee0a24"
+              />
+            </template>
+          </van-cell>
+          <!-- <van-cell center title="团购">
+            <template #right-icon>
+              <van-switch v-model="switch2" size="24" active-color="#ee0a24" />
+            </template>
+          </van-cell> -->
+          <div style="padding: 5px 16px">
+            <van-button type="danger" block round @click="determineScreen">
+              确认
+            </van-button>
+          </div>
+        </van-dropdown-item>
+      </van-dropdown-menu>
+    </div>
     <!--商品列表-->
     <div class="goods-list">
       <b-scroll
@@ -43,6 +75,10 @@
               <van-tag color="#ffe1e1" text-color="#ad0000">{{
                 item.goodsThirdCategorySource
               }}</van-tag>
+
+              <van-tag color="#ffe1e1" text-color="#ad0000">{{
+                item.goodsType
+              }}</van-tag>
             </div>
             <!--商品价格-->
             <div class="goods-price">{{ item.goodsThirdCategoryPrice }}</div>
@@ -57,12 +93,14 @@
 /**eslint disable*/
 import BScroll from "@c/scroll.vue";
 import { goodsThirdList } from "@/api/getGoods";
+
 export default {
   components: {
     BScroll,
     TabHeader: () => import("@c/header"),
     // goodsListItem: () => import("./components/goodsListItem"),
   },
+
   watch: {
     goodsThirdListData(newVal) {
       let tag;
@@ -82,6 +120,10 @@ export default {
         /**加个拼接￥ */
         i.goodsThirdCategoryPrice =
           "￥ " + i.goodsThirdCategoryPrice.toFixed(2);
+
+        /**转换商品分类 */
+        i.goodsType = i.goodsThirdCategoryType == 1 ? "新款商品" : "活动商品";
+        this.$set(i, "goodsType", i.goodsType);
       });
     },
   },
@@ -95,6 +137,19 @@ export default {
         { key: 3, label: "酷动城" },
         { key: 4, label: "放心购" },
       ],
+      options: [
+        { text: "全部商品", value: 0 },
+        { text: "新款商品", value: 1 },
+        { text: "活动商品", value: 2 },
+      ] /**下拉框选项组 */,
+      value: 0, //默认选择的商品类型
+      screenList: [
+        { key: 1, title: "京东物流" },
+        { key: 2, title: "京东自营" },
+        { key: 3, title: "酷动城" },
+        { key: 4, title: "放心购" },
+      ],
+      switchTitle: [],
     };
   },
   methods: {
@@ -122,6 +177,30 @@ export default {
       this.goodsThirdListData = data;
       console.log(data, "三级分类");
     },
+
+    /**确认筛选 */
+    determineScreen() {
+      console.log(this.switchTitle);
+      //取出switchTitle  第一个值默认为空则去掉
+      let switchList = this.switchTitle.splice(0, 1);
+      console.log(switchList,'switchList')
+      for (let i of switchList) {
+        if (i == null || i == false) {
+        }
+        for (let k of this.screenList) {
+        }
+      }
+      for (let i = 0; i < switchList.length; i++) {
+        for (let k = 0; k < this.screenList.length; k++) {
+
+        }
+      }
+
+      this.screenList.forEach((i,index)=>{
+        
+      })
+      this.$refs.item.toggle();
+    },
   },
   created() {
     this.init();
@@ -146,7 +225,7 @@ export default {
   }
 
   .goods-list {
-    height: calc(100vh - 46px);
+    // height: calc(100vh - 46px);
   }
 
   .b-scroll {
@@ -154,7 +233,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: 50px;
+    top: 100px;
     bottom: 0px;
     overflow: hidden;
   }
@@ -172,6 +251,12 @@ export default {
     margin-left: 0.7rem;
     font-size: 16px;
     color: #333;
+
+    .goods-tag {
+      .van-tag {
+        margin: 0 0.2rem;
+      }
+    }
   }
 }
 </style>

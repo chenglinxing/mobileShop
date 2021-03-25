@@ -128,8 +128,8 @@ export default {
 
     /**点击消息 */
     handleNotify() {
-      // Notify("点击消息");
-      this.$router.push("/news");
+      Notify("点击消息");
+      // this.$router.push("/news");
     },
 
     /**图片点击 */
@@ -187,12 +187,14 @@ export default {
 <style lang="scss" scoped>
 .index {
   // position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  // height: 100vh;
+  // display: flex;
+  // flex-direction: column;
+  box-sizing: border-box;
   .tab-header {
     color: #fff;
     .top2 {
+      box-sizing: border-box;
       height: 100%;
       width: 100%;
       display: flex;
@@ -247,11 +249,13 @@ export default {
   }
 
   .bottom-msg {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: sticky;
-    top: calc(100vh - 80px);
+    position: absolute;
+    // top: calc(100vh - 80px);
+    bottom: 55px;
     color: red;
   }
 }

@@ -11,7 +11,8 @@
     <van-tabbar v-model="active" route active-color="#ee0a24">
       <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
       <van-tabbar-item icon="qr-invalid" to="/menu">分类</van-tabbar-item>
-      <van-tabbar-item icon="chat-o" to="/news">消息</van-tabbar-item>
+      <!-- <van-tabbar-item icon="chat-o" to="/news">消息</van-tabbar-item> -->
+      <van-tabbar-item icon="chat-o" to="/shoppingCart">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" to="/user">我的</van-tabbar-item>
     </van-tabbar>
   </div>

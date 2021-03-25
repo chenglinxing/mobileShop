@@ -76,7 +76,9 @@ export default {
       //根据一级商品分类id获取二级商品分类id
       let goodsSecondCategoryId;
       this.dataSecondList = [];
-      console.log(this.dataList, "111");
+      // console.log(this.dataList, "111");
+      //调接口  获取二级
+      this.initSecondCategory();
       this.dataList.forEach((i) => {
         /**拿到商品二级分类id */
         if (Number(this.currentIndex) == Number(i.goodsFirstCategoryId)) {

@@ -26,7 +26,18 @@ const routes = [
       {
         path: "/menu",
         name: "menu",
+        meta: {
+          keepAlive: false
+        },
         component: () => import("../views/menu/index")
+      },
+      {
+        path: "/shoppingCart",
+        name: "shoppingCart",
+        meta: {
+          keepAlive: false
+        },
+        component: () => import("../views/shoppingCart/index")
       },
       {
         path: "/user",
@@ -34,21 +45,21 @@ const routes = [
         component: () => import("../views/user/index")
       },
       {
-        path:'/news',
-        name:'news',
-        component:()=>import("../views/news/index")
+        path: '/news',
+        name: 'news',
+        component: () => import("../views/news/index")
       }
     ]
   },
   {
-    path:"/goodsList",
-    name:"goodsList",
-    component:()=>import("../views/goodsList/index")
+    path: "/goodsList",
+    name: "goodsList",
+    component: () => import("../views/goodsList/index")
   },
   {
-    path:"/goodsDetails",
-    name:"goodsDetails",
-    component:()=>import("../views/goodsDetails/index")
+    path: "/goodsDetails",
+    name: "goodsDetails",
+    component: () => import("../views/goodsDetails/index")
   }
 ]
 

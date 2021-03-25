@@ -135,30 +135,32 @@ export let goodsSecond = Mock.mock(/\/goodsSecond/, "get", {
 export let goodsThird = Mock.mock(/\/goodsThird/, "get", {
     //三级分类ID  
     "goodsThirdCategoryId|+1": 1000,
-    "data|15": [{
+    "data|30": [{
         //三级分类描述   
         "goodsThirdCategoryDes": "@ctitle(35)",
         //三级分类图片  
-        "goodsThirdCategoryImage": Random.image('100x100', "#84a545", "GUCCI"),
+        "goodsThirdCategoryImage": Random.image('100x100', "#25aad2", "太空人"),
         //三级分类来源  
         "goodsThirdCategorySource|1-4": 1,
+        //三级分类  商品分类 新款商品1 活动商品2
+        "goodsThirdCategoryType|1-2": 1,
         //三级分类价格   
         "goodsThirdCategoryPrice|50-6000": 50,
         //商品详情信息Id   goodsDetaiInfoId   {}
-        "goodsDetaiInfoId|+1": 500,
+        "goodsDetaiInfoId|+1": 5000,
     }]
 })
 
 /**商品详情信息 */
 export let goodsDetailInfo = Mock.mock(/\/goodsDetailInfo/, "get", {
-    "data|15": [{
+    "data|30": [{
         //商品详情信息Id   goodsDetaiInfoId   {}
-        "goodsDetailInfoId|+1": 500,
+        "goodsDetailInfoId|+1": 5000,
         //商品图片List
         "goodsImageList|3-5": [
             {
                 //商品图片
-                "goodsImage": Random.image('100x100', "#629edc", "Image"),
+                "goodsImage": Random.image('75x75', "#629edc", "Image"),
             }
         ],
         //商品介绍   
@@ -166,7 +168,7 @@ export let goodsDetailInfo = Mock.mock(/\/goodsDetailInfo/, "get", {
             //商品名称    
             "goodsItdName": "@cword(5)",
             //商品描述    
-            "goodsItdDec": "@cword(30)",
+            "goodsItdDec": "@cword(50)",
             //商品价格    
             "goodsItdPrice|150-2000": 150,
         },

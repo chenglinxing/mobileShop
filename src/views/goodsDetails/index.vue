@@ -3,10 +3,11 @@
   <div class="goods-details">
     <!--头部导航栏-->
     <van-tabs
-      v-model="active"
+      class="van-tabs"
+      v-model:active="active"
       scrollspy
       sticky
-      @scroll="scroll"
+      @scroll="handleScroll"
       @click="handleTabs"
     >
       <!--左侧内容-->
@@ -19,35 +20,30 @@
         <van-icon name="shopping-cart-o" @click="shoppingCart" />
       </div>
 
-      <van-tab
-        v-for="(item, index) in tabsList"
-        :title="item.title"
-        :key="index"
-      >
-        <!--商品-->
-        <div v-if="index == 0">
-          <!--图片轮播-->
-          <swiper-image class="swiper-image" :goodsImageList="goodsImageList" />
-
-          <!--商品详细信息-->
-          <details-info />
-        </div>
+      <!-- <b-scroll
+        ref="scroll"
+        :probeType="3"
+        :pullUpload="false"
+        class="b-scroll"
+      > -->
+      <!--商品-->
+      <van-tab title="商品">
+        <!--图片轮播-->
+        <swiper-image class="swiper-image" :goodsImageList="goodsImageList" />
+        <!--商品详细信息-->
+        <details-info :goodsIntroduction="goodsIntroduction" />
       </van-tab>
-    </van-tabs>
 
-    <!--商品规格-->
-    <!-- <van-sku
-      v-model="isShowSku"
-      :sku="sku"
-      :goods="goods"
-      :goods-id="goodsId"
-      :quota="quota"
-      :quota-used="quotaUsed"
-      :hide-stock="hideStock"
-      :message-config="messageConfig"
-      @buy-clicked="onBuyClicked"
-      @add-cart="onAddCartClicked"
-    /> -->
+      <!--详情-->
+      <van-tab title="详情">详情 </van-tab>
+
+      <!--评价-->
+      <van-tab title="评价">评价 </van-tab>
+
+      <!--推荐-->
+      <van-tab title="推荐">推荐 </van-tab>
+      <!-- </b-scroll> -->
+    </van-tabs>
 
     <van-sku
       v-model="showBase"
@@ -61,13 +57,12 @@
       reset-stepper-on-hide
       reset-selected-sku-on-hide
       disable-stepper-input
-
       @buy-clicked="onBuyClicked"
       @add-cart="onAddCartClicked"
     />
 
     <!--购物车-->
-    <add-goods-cart @addToCart="addToCart"/>
+    <add-goods-cart @addToCart="addToCart" />
   </div>
 </template>
 
@@ -81,6 +76,7 @@ export default {
     SwiperImage: () => import("./components/swiperImage"),
     DetailsInfo: () => import("./components/detailsInfo"),
     AddGoodsCart: () => import("./components/addGoodsCart"),
+    BScroll: () => import("@c/scroll.vue"),
   },
   data() {
     return {
@@ -93,7 +89,7 @@ export default {
       ], //tabs
 
       // sku: {}, //商品 sku 数据
-      // goodsDetaiInfo: [], //商品详情信息
+      goodsDetaiInfo: [], //商品详情信息
       // isShowSku: false, //默认隐藏商品规格
       // goods: {}, //商品信息
       // goodsId: "", //商品Id
@@ -116,15 +112,16 @@ export default {
       },
 
       goodsImageList: [], //商品图片  存入轮播
+      goodsIntroduction: {}, //商品介绍
     };
   },
   methods: {
-    scroll(a) {
-      console.log(a);
+    handleScroll(a) {
+      console.log(a, "a");
     },
     handleTabs(a, b) {
-      console.log(111);
       console.log(a, b);
+      this.active = a;
     },
 
     /**返回上一层 */
@@ -137,24 +134,36 @@ export default {
     shoppingCart() {},
 
     /**点击加入购物车  子组件传入 */
-    addToCart(){
-      this.showBase=true
+    addToCart() {
+      this.showBase = true;
+    },
+
+    /**点击轮播的图片 */
+    handleImage(index) {
+      console.log(index);
     },
 
     onBuyClicked() {},
+
     onAddCartClicked() {},
     /**初始化商品详情数据 */
     async init() {
       this.goodsDetaiInfo = [];
       const { data } = await goodsDetailInfo();
       console.log(data, "商品详情信息");
+
       /**取出对应商品详情id的数据 */
       let goodsDetailInfoId = this.$route.query.goodsDetailsId;
       data.forEach((i) => {
         if (Number(goodsDetailInfoId) == Number(i.goodsDetailInfoId)) {
+          //赋值商品信息
           this.goodsDetaiInfo.push(i);
+
+          //赋值商品介绍
+          this.goodsIntroduction = i.goodsIntroduction;
         }
       });
+      // console.log(this.goodsDetaiInfo,goodsDetailInfoId,'goodsDetaiInfo')
       //存放商品图片
       this.goodsImageList = this.goodsDetaiInfo[0].goodsImageList;
     },
@@ -167,7 +176,7 @@ export default {
 
 <style lang="scss" scoped>
 .goods-details {
-  height: 100vh;
+  height: calc(100vh - 60px);
   overflow: auto;
 
   .left-return,
@@ -193,6 +202,25 @@ export default {
 
   .swiper-image {
     width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .b-scroll {
+    height: calc(100vh - 50px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+    bottom: 0px;
+    overflow: hidden;
   }
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+// ::-webkit-scrollbar-track{
+//   background-color: red;
+// }
 </style>
