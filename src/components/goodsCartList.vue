@@ -1,7 +1,7 @@
 <template>
   <!--购物车中的商品-->
   <div class="goods-cart-list">
-    <van-button @click="returnA">返回</van-button>
+    <!-- <van-button @click="returnA">返回</van-button> -->
     <!-- {{ goodsCartList }} -->
     <div class="cart-lsit" v-for="(item, index) in goodsCartList" :key="index">
       <!--按钮 店铺名 -->
