@@ -16,6 +16,6 @@ module.exports = {
             .set("@u", resolve("src/utils")),
             config.entry("main").add("babel-polyfill"); // main是入口js文件
     },
-    outputDir: 'dailylife',
+    // outputDir: 'dailylife',
     lintOnSave: false, //关闭eslint
 }
