@@ -118,7 +118,7 @@ export default {
   },
   watch: {
     goodsIntroduction(newVal) {
-      newVal.goodsItdPrice = newVal.goodsItdPrice.toFixed(2);
+      newVal.goodsItdPrice = newVal.goodsItdPrice;
     },
   },
   components: {

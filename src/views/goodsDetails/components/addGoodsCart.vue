@@ -10,7 +10,7 @@
         text="加入购物车"
         @click="addToCart"
       />
-      <van-goods-action-button type="danger" text="立即购买" />
+      <van-goods-action-button type="danger" text="立即购买" @click="buyNow" />
     </van-goods-action>
   </div>
 </template>
@@ -20,7 +20,12 @@ export default {
   methods: {
     /**加入购物车 */
     addToCart() {
-      this.$emit("addToCart")
+      this.$emit("addToCart");
+    },
+
+    /**点击立即购买 */
+    buyNow() {
+      this.$emit("buyNow");
     },
   },
 };

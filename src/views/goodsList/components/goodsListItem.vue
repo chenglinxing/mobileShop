@@ -71,7 +71,7 @@ export default {
 
         /**加个拼接￥ */
         i.goodsThirdCategoryPrice =
-          "￥ " + i.goodsThirdCategoryPrice.toFixed(2);
+          "￥ " + i.goodsThirdCategoryPrice;
       });
     },
   },

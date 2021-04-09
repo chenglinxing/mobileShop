@@ -119,7 +119,7 @@ export default {
 
         /**加个拼接￥ */
         i.goodsThirdCategoryPrice =
-          "￥ " + i.goodsThirdCategoryPrice.toFixed(2);
+          "￥ " + i.goodsThirdCategoryPrice;
 
         /**转换商品分类 */
         i.goodsType = i.goodsThirdCategoryType == 1 ? "新款商品" : "活动商品";
@@ -168,6 +168,9 @@ export default {
           goodsDetailsId: id,
         },
       });
+
+      //清除商品信息
+      localStorage.removeItem("goodsDetailsInfo");
     },
 
     /**初始化数据  获取商品三级分类*/
@@ -183,22 +186,8 @@ export default {
       console.log(this.switchTitle);
       //取出switchTitle  第一个值默认为空则去掉
       let switchList = this.switchTitle.splice(0, 1);
-      console.log(switchList,'switchList')
-      for (let i of switchList) {
-        if (i == null || i == false) {
-        }
-        for (let k of this.screenList) {
-        }
-      }
-      for (let i = 0; i < switchList.length; i++) {
-        for (let k = 0; k < this.screenList.length; k++) {
+      console.log(switchList, "switchList");
 
-        }
-      }
-
-      this.screenList.forEach((i,index)=>{
-        
-      })
       this.$refs.item.toggle();
     },
   },
@@ -215,7 +204,7 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    color: #fff;
+    color: #ff852a;
     .van-icon,
     .goods-list-name {
       display: flex;

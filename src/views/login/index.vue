@@ -18,7 +18,7 @@
       />
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit">
-          提交
+          登 录
         </van-button>
       </div>
     </van-form>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import Base64 from "@/utils/base64";
 export default {
   data() {
     return {
@@ -35,9 +36,14 @@ export default {
     };
   },
   methods: {
+    /** 点击登录按钮   暂时未加条件限制*/
     onSubmit(values) {
-      console.log("submit", values);
-      window.localStorage.setItem('user',111)
+      let base64 = new Base64();
+      let encryption = base64.encode(this.username);
+      /**缓存中存入加密后的用户名 */
+      window.localStorage.setItem("user", encryption);
+      /**用户登录后  将用户登录标志设置true */
+      this.$store.commit("loginFinish");
       this.$router.push("/home");
     },
   },

@@ -6,6 +6,90 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "833330",
+      "name": "唯品会",
+      "font_class": "weipinhui",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "5861528",
+      "name": "拍卖",
+      "font_class": "paimai",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "6376659",
+      "name": "充值缴费",
+      "font_class": "chongzhijiaofei",
+      "unicode": "e700",
+      "unicode_decimal": 59136
+    },
+    {
+      "icon_id": "9976835",
+      "name": "代办事项",
+      "font_class": "daibanshixiang",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "11819106",
+      "name": "萌宠",
+      "font_class": "mengchong",
+      "unicode": "e6bc",
+      "unicode_decimal": 59068
+    },
+    {
+      "icon_id": "12664865",
+      "name": "服饰",
+      "font_class": "clothes",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "13212358",
+      "name": "商城-3C数码",
+      "font_class": "Cshuma",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "14888072",
+      "name": "领券中心",
+      "font_class": "zu14",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "15201309",
+      "name": "超市",
+      "font_class": "gouwu-2",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "16375902",
+      "name": "旅行",
+      "font_class": "biaoqianA01_lvhang-263",
+      "unicode": "ea82",
+      "unicode_decimal": 60034
+    },
+    {
+      "icon_id": "16978106",
+      "name": "S_在线购药（商城）",
+      "font_class": "S_zaixiangouyaoshangcheng",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "18251902",
+      "name": "会员",
+      "font_class": "huiyuan",
+      "unicode": "ef50",
+      "unicode_decimal": 61264
+    },
+    {
       "icon_id": "11316461",
       "name": "美团",
       "font_class": "meituan",

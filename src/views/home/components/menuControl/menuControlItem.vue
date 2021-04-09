@@ -1,11 +1,12 @@
 <template>
   <div class="menu-control-item">
-    <van-grid :border="false">
+    <van-grid :border="false" column-num="5">
       <!--:icon="'icon iconfont ' + item.icon"-->
       <van-grid-item
         v-for="(item, index) in itemList"
         :key="index"
         :text="item.text"
+        @click="handleGridItem(index, item.text)"
       >
         <div slot="icon">
           <svg class="icon tianmao1" aria-hidden="true">
@@ -18,20 +19,31 @@
 </template>
         
 <script>
+import { Toast } from "vant";
+import throttle from "lodash.throttle";
+
 export default {
   data() {
     return {
       itemList: [
-        { icon: "icon-tianmao1", text: "天猫" },
-        { icon: "icon-taobao", text: "淘宝" },
-        { icon: "icon-suning", text: "苏宁" },
-        { icon: "icon-jingdong", text: "京东" },
-        { icon: "icon-pinduoduo1", text: "拼多多" },
-        { icon: "icon-elemo", text: "饿了么" },
-        { icon: "icon-meituan", text: "美团" },
-        { icon: "icon-dingdongluobu", text: "叮咚" },
+        { icon: "icon-gouwu-2", text: "京东超市" },
+        { icon: "icon-Cshuma", text: "数码电器" },
+        { icon: "icon-clothes", text: "潮流服饰" },
+        { icon: "icon-chongzhijiaofei", text: "充值缴费" },
+        { icon: "icon-biaoqianA01_lvhang-263", text: "京东旅行" },
+        { icon: "icon-S_zaixiangouyaoshangcheng", text: "看病购药" },
+        { icon: "icon-mengchong", text: "京东萌宠" },
+        { icon: "icon-paimai", text: "京东拍卖" },
+        { icon: "icon-zu14", text: "领券中心" },
+        { icon: "icon-huiyuan", text: "京东会员" },
       ],
     };
+  },
+  methods: {
+    /**点击 item */
+    handleGridItem: throttle(function (index, title) {
+      Toast(title);
+    }, 1500),
   },
 };
 </script>

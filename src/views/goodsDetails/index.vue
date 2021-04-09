@@ -62,7 +62,7 @@
     />
 
     <!--购物车-->
-    <add-goods-cart @addToCart="addToCart" />
+    <add-goods-cart @addToCart="addToCart" @buyNow="buyNow" />
   </div>
 </template>
 
@@ -135,7 +135,60 @@ export default {
 
     /**点击加入购物车  子组件传入 */
     addToCart() {
-      this.showBase = true;
+      // this.showBase = true;
+      let shopObj = {
+        goodsSource: this.goodsIntroduction.goodsSource, //商家名称ID
+        goodsList: [],
+        shopChecked: false,
+      };
+
+      let goodsObj = {
+        goodsId: this.goodsIntroduction.goodsId, //商品id
+        goodsName: this.goodsIntroduction.goodsItdName, //商品名称
+        goodsPrice: this.goodsIntroduction.goodsItdPrice, //商品价格
+        // goodsImage:,//商品图片
+        // goodsParams:,//商品参数
+        goodsNum: 1,
+        goodsChecked: false,
+      };
+
+      let store = this.$store.state.shoppingCartList;
+      if (store.length > 0) {
+        store.forEach((i) => {
+          //当商家id相同时
+          if (i.goodsSource == this.goodsIntroduction.goodsSource) {
+            //当商品id相同时
+            i.goodsList.forEach((k) => {
+              if (k.goodsId == this.goodsIntroduction.goodsId) {
+                k.goodsNum += 1;
+                console.log("商家id相同  商品id相同");
+              } else {
+                i.goodsList.push(goodsObj);
+                console.log("商家id相同  商品id不同");
+              }
+            });
+          } else {
+            //当商家id不相同时
+            shopObj.goodsList.push(goodsObj);
+            store.push(shopObj);
+          }
+        });
+      } else {
+        shopObj.goodsList.push(goodsObj);
+        this.$store.state.shoppingCartList.push(shopObj);
+      }
+
+      this.$router.push("shoppingCart");
+      console.log(shopObj, "商品");
+    },
+
+    /**点击立即购买  子组件传入 */
+    buyNow() {
+      //先判断用户是否登录  未登录点击完后跳转登录页
+      console.log(this.$store.state.userLogin.login);
+      if (!this.$store.state.userLogin.login) {
+        this.$router.replace("/login");
+      }
     },
 
     /**点击轮播的图片 */
@@ -148,24 +201,35 @@ export default {
     onAddCartClicked() {},
     /**初始化商品详情数据 */
     async init() {
-      this.goodsDetaiInfo = [];
-      const { data } = await goodsDetailInfo();
-      console.log(data, "商品详情信息");
+      /**防止mock造的数据与频繁切换页面发生数据紊乱 将
+       * 第一次请求的数据放到缓存中
+       * 如果缓存中数据不为空则取缓存中数据  反之取接口数据
+       * */
+      let data;
+      if (localStorage.getItem("goodsDetailsInfo") == null) {
+        this.goodsDetaiInfo = [];
+        data = await goodsDetailInfo();
+        console.log(data, "商品详情信息");
+
+        localStorage.setItem("goodsDetailsInfo", JSON.stringify(data));
+      } else {
+        data = JSON.parse(localStorage.getItem("goodsDetailsInfo"));
+      }
 
       /**取出对应商品详情id的数据 */
       let goodsDetailInfoId = this.$route.query.goodsDetailsId;
-      data.forEach((i) => {
+      data.data.forEach((i) => {
         if (Number(goodsDetailInfoId) == Number(i.goodsDetailInfoId)) {
           //赋值商品信息
           this.goodsDetaiInfo.push(i);
-
           //赋值商品介绍
           this.goodsIntroduction = i.goodsIntroduction;
+          //存放商品图片
+          this.goodsImageList = i.goodsImageList;
         }
       });
-      // console.log(this.goodsDetaiInfo,goodsDetailInfoId,'goodsDetaiInfo')
-      //存放商品图片
-      this.goodsImageList = this.goodsDetaiInfo[0].goodsImageList;
+      console.log(data, "data");
+      console.log(this.goodsImageList, "goodsImageList");
     },
   },
   created() {

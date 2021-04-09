@@ -29,6 +29,25 @@ const eventBus = new Vue()
 Vue.prototype.$bus = eventBus
 // console.log(process.env.BASE_URL,'process.env.BASE_URL')
 
+/**创建过滤器  用于字典值的转换 */
+Vue.filter("divValueConversion", function (val, dicList) {
+  if (!(Array.isArray(dicList) && dicList.length > 0)) return false
+  const target = dicList.filter(i => {
+    return i.key = val
+  })
+  return target.length ? target[0].label : val
+})
+
+/**自定义指令  用于用户在未登录的情况下，点击消息或立即购物等按钮直接跳转到登录页 */
+// Vue.directive("nologin", {
+//   // inserted(el, binding, vnode) {
+//   //   console.log(el, binding, vnode)
+//   // }
+//   inserted(el,binding,vnode){
+//     el.style.color="#fff"
+//   }
+// })
+
 new Vue({
   router,
   store,

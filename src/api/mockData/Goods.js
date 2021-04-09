@@ -163,6 +163,7 @@ export let goodsDetailInfo = Mock.mock(/\/goodsDetailInfo/, "get", {
                 "goodsImage": Random.image('75x75', "#629edc", "Image"),
             }
         ],
+
         //商品介绍   
         "goodsIntroduction": {
             //商品名称    
@@ -171,6 +172,9 @@ export let goodsDetailInfo = Mock.mock(/\/goodsDetailInfo/, "get", {
             "goodsItdDec": "@cword(50)",
             //商品价格    
             "goodsItdPrice|150-2000": 150,
+            //商品来源  默认0  0-3分别为第一家店  第二家店 第三家店 第四家店
+            "goodsSource|0-3": 0,
+            "goodsId|+1":800,
         },
 
         //商品评价     {}

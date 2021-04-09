@@ -37,7 +37,7 @@ export default {
   display: flex;
   flex-direction: column;
   box-shadow: 0 1px 1px rgba(100, 100, 100, 0.1);
-  background-color: #ff0036;
+  background-color: #fff;
   position: sticky;
   // top: 100px;
 

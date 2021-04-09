@@ -4,11 +4,15 @@
     <div class="tab-header">
       <tab-header :isShowHeaderTop2="isShowHeaderTop2">
         <div class="top2" slot="top">
-          <div class="signIn" @click="signIn">签到</div>
+          <div class="signIn" @click="signIn">
+            <span>签到</span>
+          </div>
           <div class="center">
             <!-- <img :src="logo" alt="" /> -->
           </div>
-          <div class="notify" @click="handleNotify">消息</div>
+          <div class="notify" @click="handleNotify">
+            <span>消息</span>
+          </div>
         </div>
         <div slot="bottom" class="bottom">
           <van-search
@@ -47,9 +51,12 @@
         <!--瀑布流-->
         <!-- <water-fall-flow class="water-fall-flow" :pictureList="pictureList" /> -->
 
-        <!--内容-->
+        <!--商品列表内容-->
 
-        <van-grid :border="false" :column-num="2">
+        <div class="goods-list-content">
+          <goods-dec></goods-dec>
+        </div>
+        <!-- <van-grid :border="false" :column-num="2">
           <van-grid-item>
             <van-image
               v-for="(item, index) in 20"
@@ -64,7 +71,7 @@
               src="https://img.yzcdn.cn/vant/apple-2.jpg"
             />
           </van-grid-item>
-        </van-grid>
+        </van-grid> -->
       </van-pull-refresh>
     </b-scroll>
 
@@ -97,12 +104,18 @@ export default {
       searchValue: "", //搜索框内容
       content: 20,
       isLoading: false,
-      background: "#ff0036",
+      background: "#fff",
       logo:
         "//gw.alicdn.com/tfs/TB1wQw8qamWBuNjy1XaXXXCbXXa-237-41.png_240x10000.jpg_.webp",
       pictureList: [
-        { img_url: "https://img.yzcdn.cn/vant/apple-2.jpg" },
-        { img_url: "https://img.yzcdn.cn/vant/apple-1.jpg" },
+        {
+          img_url:
+            "//m.360buyimg.com/mobilecms/s700x280_jfs/t1/164353/10/12714/126518/60531cffEd74f198e/a06d9afd19f5464c.jpg!q70.jpg.dpg",
+        },
+        {
+          img_url:
+            "//m.360buyimg.com/mobilecms/s700x280_jfs/t1/155887/8/16711/104572/60534627Eb979dc75/cc416de39d2e83b0.jpg!cr_1125x445_0_171!q70.jpg.dpg",
+        },
         ,
       ],
       isShowBackTop: false, //默认隐藏回到顶部图标
@@ -118,6 +131,7 @@ export default {
     BScroll, //滚动条
     // WaterFallFlow: () => import("@c/waterFallFlow"),
     BackTop: () => import("@c/backTop"), //回到顶部
+    goodsDec: () => import("./components/goodsDes"),
   },
   methods: {
     /**点击签到 */
@@ -128,7 +142,7 @@ export default {
 
     /**点击消息 */
     handleNotify() {
-      Notify("点击消息");
+      Toast("点击消息");
       // this.$router.push("/news");
     },
 
@@ -156,7 +170,7 @@ export default {
 
       //3.当下拉的高度超过2580px 则提示已经到底了
       if (position.y < 0) {
-        this.scrollToEnd = Math.abs(position.y) > 2580 ? true : false;
+        this.scrollToEnd = Math.abs(position.y) > 1000 ? true : false;
       }
     },
     //下拉
@@ -202,7 +216,16 @@ export default {
       text-align: center;
       .signIn,
       .notify {
-        width: 50px;
+        width: 60px;
+        color: #ff852a;
+        // margin: 0 0.5rem;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // span {
+        //   font-weight: 700;
+        //   padding-left: 0.1rem;
+        // }
       }
       .center {
         flex: 1;
@@ -211,6 +234,13 @@ export default {
           width: 50%;
           height: 50%;
         }
+      }
+    }
+
+    .bottom {
+      /deep/.van-search__content {
+        border-radius: 2rem;
+        border: 2px solid #ff852a;
       }
     }
   }

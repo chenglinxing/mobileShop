@@ -184,7 +184,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #ff852a;
   }
 
   .van-loading {
@@ -239,6 +239,7 @@ export default {
   // left: 0;
   // right: 0;
   // margin: auto;
+
   // font-size: 22px;
 }
 </style>
