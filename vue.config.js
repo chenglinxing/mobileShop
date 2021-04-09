@@ -13,7 +13,8 @@ module.exports = {
             .set("@a", resolve("src/assets"))
             .set("@c", resolve("src/components"))
             .set("@v", resolve("src/views"))
-            .set("@u", resolve("src/utils"))
+            .set("@u", resolve("src/utils")),
+            config.entry("main").add("babel-polyfill"); // main是入口js文件
     },
     outputDir: 'dailylife',
     lintOnSave: false, //关闭eslint
