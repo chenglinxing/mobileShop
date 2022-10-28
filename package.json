@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "babel-polyfill": "^6.26.0",
     "better-scroll": "^2.0.6",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",

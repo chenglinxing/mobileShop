@@ -1,18 +1,17 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    redirect: '/home'
+    path: "/",
+    redirect: "/home",
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import("../views/login/index")
+    path: "/login",
+    name: "login",
+    component: () => import("../views/login/index"),
   },
   {
     path: "/",
@@ -21,57 +20,58 @@ const routes = [
       {
         path: "/home",
         name: "home",
-        component: () => import("../views/home/index")
+        component: () => import("../views/home/index"),
       },
       {
         path: "/menu",
         name: "menu",
         meta: {
-          keepAlive: false
+          keepAlive: false,
         },
-        component: () => import("../views/menu/index")
+        component: () => import("../views/menu/index"),
       },
       {
         path: "/shoppingCart",
         name: "shoppingCart",
         meta: {
-          keepAlive: false
+          keepAlive: false,
         },
-        component: () => import("../views/shoppingCart/index")
+        component: () => import("../views/shoppingCart/index"),
       },
       {
         path: "/user",
         name: "user",
-        component: () => import("../views/user/index")
+        component: () => import("../views/user/index"),
       },
       {
-        path: '/news',
-        name: 'news',
-        component: () => import("../views/news/index")
-      }
-    ]
+        path: "/news",
+        name: "news",
+        component: () => import("../views/news/index"),
+      },
+    ],
   },
   {
     path: "/goodsList",
     name: "goodsList",
-    component: () => import("../views/goodsList/index")
+    component: () => import("../views/goodsList/index"),
   },
   {
     path: "/goodsDetails",
     name: "goodsDetails",
-    component: () => import("../views/goodsDetails/index")
+    component: () => import("../views/goodsDetails/index"),
   },
   {
     path: "/userSetting",
     name: "userSetting",
-    component: () => import("../views/setting/index")
-  }
-]
+    component: () => import("../views/setting/index"),
+  },
+];
 
 const router = new VueRouter({
-  mode: 'hash',
-  base: process.env.NODE_ENV === 'development' ? process.env.BASE_URL : '/dailylife/',
-  routes
-})
+  mode: "hash",
+  // base: process.env.NODE_ENV === 'development' ? process.env.BASE_URL : '/dailylife/',
+  base: "/",
+  routes,
+});
 
-export default router
+export default router;
