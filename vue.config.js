@@ -5,8 +5,8 @@ function resolve(dir) {
 }
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === "production" ? "/dailylife/" : "/",
-  // publicPath: "/",
+  // publicPath: process.env.NODE_ENV === "production" ? "/dailylife/" : "/",
+  publicPath: "/dailylife/",
   chainWebpack: (config) => {
     config.resolve.alias
       .set("@", resolve("src"))
@@ -17,5 +17,6 @@ module.exports = {
       config.entry("main").add("babel-polyfill"); // main是入口js文件
   },
   // outputDir: 'dailylife',
+  outputDir: path.resolve(__dirname, "dist"),
   lintOnSave: false, //关闭eslint
 };
