@@ -5,7 +5,7 @@ function resolve(dir) {
 }
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === "production" ? "/dailylife" : "/",
+    publicPath: process.env.NODE_ENV === "production" ? "/dailylife/" : "/",
   // publicPath: "/",
   chainWebpack: (config) => {
     config.resolve.alias
