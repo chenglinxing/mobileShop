@@ -70,7 +70,7 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   // base: process.env.NODE_ENV === "production" ? "/dailylife/" : "/",
-  // base: "dailylife",
+  base: process.env.BASE_URL,
   routes,
 });
 // console.log(process.env.NODE_ENV,process.env.BASE_URL, "process.env.NODE_ENV");
