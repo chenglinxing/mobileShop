@@ -68,9 +68,9 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "hash",
-  // base: process.env.NODE_ENV === 'development' ? process.env.BASE_URL : '/dailylife/',
-  base: process.env.BASE_URL,
+  mode: "history",
+  base: process.env.NODE_ENV === 'development' ? process.env.BASE_URL : '/dailylife/',
+  // base: process.env.BASE_URL,
   routes,
 });
 // console.log(process.env.NODE_ENV,process.env.BASE_URL, "process.env.NODE_ENV");
